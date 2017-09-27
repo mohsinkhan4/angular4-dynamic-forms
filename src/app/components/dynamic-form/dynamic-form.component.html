@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form (ngSubmit)="onSubmit()" [formGroup]="dfForm">
+            <div *ngFor="let dfFormField of dfFormFields" class="form-row">
+                <df-form-field [dfFormField]="dfFormField" [dfForm]="dfForm"></df-form-field>
+            </div>
+            <hr>
+            <button 
+                type="submit"
+                class="btn btn-info">
+                Submit
+            </button>
+        </form>
+    </div>
+</div>

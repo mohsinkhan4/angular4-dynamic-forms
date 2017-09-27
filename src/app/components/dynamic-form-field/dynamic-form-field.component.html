@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div 
+            class="form-group"
+            [ngSwitch]="dfFormField.type"
+            [formGroup]="dfForm">
+
+            <label [for]="dfFormField.key">{{ dfFormField.label }}</label>
+
+            <app-text 
+                *ngSwitchCase="'TEXT'" 
+                [dfForm]="dfForm"
+                [dfFormField]="dfFormField">
+            </app-text>
+
+            <app-dropdown 
+                *ngSwitchCase="'DROPDOWN'" 
+                [dfForm]="dfForm"
+                [dfFormField]="dfFormField">
+            </app-dropdown>
+
+            <app-date 
+                *ngSwitchCase="'DATE'" 
+                [dfForm]="dfForm"
+                [dfFormField]="dfFormField">
+            </app-date>
+
+            <app-range 
+                *ngSwitchCase="'RANGE'" 
+                [dfForm]="dfForm"
+                [dfFormField]="dfFormField">
+            </app-range>
+
+        </div>
+    </div>
+</div>
