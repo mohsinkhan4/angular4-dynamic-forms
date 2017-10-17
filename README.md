@@ -12,6 +12,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 2. The metadata json is currently fetched from a hard-coded service defined in: dynamic-form-field.service.ts
 3. Bootstrap v3.3.7 is used to style the components.
 4. On form submission, the json data is printed on the console.
+5. Supports Sections in the form
 
 ## Development server
 
