@@ -28,20 +28,20 @@ interface FormFieldConfiguration {
 
 }
 
-export class FormField{
+export class FormField {
   
-    disabled: boolean;
-    errorMessages: ErrorMessages;
-    id: string;
-    key: string;
-    label: string;
-    mandatory: boolean;
-    maxlength: number;
-    minlength: number;
-    path: string;
-    selectorControl: SelectorControl
-    type: string;
-    value: string;
+    private  disabled: boolean;
+    private  errorMessages: ErrorMessages;
+    private  id: string;
+    private  key: string;
+    private  label: string;
+    private  mandatory: boolean;
+    private  maxlength: number;
+    private  minlength: number;
+    private  path: string;
+    private  selectorControl: SelectorControl
+    private  type: string;
+    private  value: string;
 
     constructor(ffg: FormFieldConfiguration) {
 
@@ -59,7 +59,27 @@ export class FormField{
         this.value = (ffg.type === 'DATE' ? this.getDateValue(ffg.value) : ffg.value) || '';
     }
 
-    getSelectorControl(sc: SelectorControl) {
+    getId() : string {
+        return this.id;
+    }
+
+    getKey() : string {
+        return this.key;
+    }
+
+    getMandatory() : boolean {
+        return this.mandatory;
+    }
+
+    getSelectorDefaultValue() : string {
+        return this.selectorControl.defaultValue;
+    }
+
+    getValue() : string {
+        return this.value;
+    }
+ 
+    private getSelectorControl(sc: SelectorControl) : SelectorControl {
         return {
             defaultValue : sc.defaultValue,
             options : Object.keys(sc.options).map( 
@@ -68,7 +88,7 @@ export class FormField{
         }
     }
 
-    getDateValue(value: string) {
+    private getDateValue(value: string) : string {
         const date = new Date(value);
         const d ={
             yyyy : date.getFullYear(),

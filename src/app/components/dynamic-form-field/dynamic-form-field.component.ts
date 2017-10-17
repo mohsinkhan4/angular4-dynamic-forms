@@ -9,8 +9,8 @@ import { FormField }     from '../../models/form-field';
 })
 export class DynamicFormFieldComponent{
 
-    @Input() dfFormField: FormField;
-    @Input() dfForm: FormGroup;
+    @Input() dfFormGroup: FormGroup;
+    @Input() dynamicFormField: FormField;
 
     /*get isValid() { 
         return this.dfForm.controls[this.dfFormfield.key].valid; 

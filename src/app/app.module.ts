@@ -9,6 +9,7 @@ import { TextComponent } from './components/dynamic-form-field-types/text/text.c
 import { DropdownComponent } from './components/dynamic-form-field-types/dropdown/dropdown.component';
 import { DateComponent } from './components/dynamic-form-field-types/date/date.component';
 import { RangeComponent } from './components/dynamic-form-field-types/range/range.component';
+import { DynamicFormSectionComponent } from './components/dynamic-form-section/dynamic-form-section.component';
 
 @NgModule({
     imports: [ 
@@ -22,7 +23,7 @@ import { RangeComponent } from './components/dynamic-form-field-types/range/rang
         TextComponent,
         DropdownComponent,
         DateComponent, 
-        RangeComponent
+        RangeComponent, DynamicFormSectionComponent
     ],
     bootstrap: [ 
         AppComponent 

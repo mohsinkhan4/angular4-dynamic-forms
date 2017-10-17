@@ -2,33 +2,33 @@
     <div class="col-xs-12">
         <div 
             class="form-group"
-            [ngSwitch]="dfFormField.type"
-            [formGroup]="dfForm">
+            [ngSwitch]="dynamicFormField.type"
+            [formGroup]="dfFormGroup">
 
-            <label [for]="dfFormField.key">{{ dfFormField.label }}</label>
+            <label [for]="dynamicFormField.key">{{ dynamicFormField.label }}</label>
 
             <app-text 
                 *ngSwitchCase="'TEXT'" 
-                [dfForm]="dfForm"
-                [dfFormField]="dfFormField">
+                [dfForm]="dfFormGroup"
+                [dfFormField]="dynamicFormField">
             </app-text>
 
             <app-dropdown 
                 *ngSwitchCase="'DROPDOWN'" 
-                [dfForm]="dfForm"
-                [dfFormField]="dfFormField">
+                [dfForm]="dfFormGroup"
+                [dfFormField]="dynamicFormField">
             </app-dropdown>
 
             <app-date 
                 *ngSwitchCase="'DATE'" 
-                [dfForm]="dfForm"
-                [dfFormField]="dfFormField">
+                [dfForm]="dfFormGroup"
+                [dfFormField]="dynamicFormField">
             </app-date>
 
             <app-range 
                 *ngSwitchCase="'RANGE'" 
-                [dfForm]="dfForm"
-                [dfFormField]="dfFormField">
+                [dfForm]="dfFormGroup"
+                [dfFormField]="dynamicFormField">
             </app-range>
 
         </div>

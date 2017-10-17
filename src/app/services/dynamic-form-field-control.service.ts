@@ -1,25 +1,42 @@
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormField } from '../models/form-field';
+import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
+
+import { FormField as DynamicFormField } from '../models/form-field';
+import { DynamicFormSection}     from '../models/df-form-section';
 
 export class DynamicFormFieldControlService {
 
     constructor() { }
 
-    formFieldsToFormGroup(formFields: FormField[] ) {
+    getFormGroups(dynamicFormSections : DynamicFormSection[]) : FormGroup {
 
-        const group: any = {};
+        const formGroupConfig = {};
 
-        formFields.forEach( 
-            (formField) => {
-            
-                const validators = [];
-                if(formField.mandatory) validators.push(Validators.required);
+        dynamicFormSections.forEach(
+            (dynamicFormSection) => {
 
-                group[formField.key] = new FormControl(formField.value || formField.selectorControl.defaultValue || '', validators);
+                const formArray = new FormArray([]);
+                dynamicFormSection.getFields().forEach(
+                    (field) => {
+                        formGroupConfig[field.getKey()] = this.getFormControl(field);
+                    }
+                )
+
             }
-        );
+        )
 
-        return new FormGroup(group);
+        const formGroup = new FormGroup(formGroupConfig);
+        return formGroup;
+
+    }
+
+    private getFormControl(dff : DynamicFormField) : FormControl {
+
+        const validators = [];
+        if(dff.getMandatory()) validators.push(Validators.required);
+
+        const formControl = new FormControl(dff.getValue() || dff.getSelectorDefaultValue() || '', validators)
+        return formControl;
+
     }
 
 }

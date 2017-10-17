@@ -1,18 +1,22 @@
-import { Component }       from '@angular/core';
+import { Component, OnInit }       from '@angular/core';
 
 import { DynamicFormFieldService } from './services/dynamic-form-field.service';
+import { DynamicFormSectionService } from './services/dynamic-form-section.service';
+import { DynamicFormService } from './services/dynamic-form.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    providers:  [DynamicFormFieldService]
+    providers:  [DynamicFormFieldService, DynamicFormSectionService, DynamicFormService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
-    dfFormFields: any[];
+    dynamicForm: any;
 
-    constructor(dfFormFieldService: DynamicFormFieldService) {
-        this.dfFormFields = dfFormFieldService.getFormFields();
+    constructor(private dynamicFormService: DynamicFormService) { }
+
+    ngOnInit() {
+        this.dynamicForm = this.dynamicFormService.getForm();
     }
 
 }

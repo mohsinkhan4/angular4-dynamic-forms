@@ -1,7 +1,7 @@
 import { Component, Input, OnInit }  from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { FormField } from '../../models/form-field';
+import { DynamicForm } from '../../models/df-form';
 import { DynamicFormFieldControlService } from '../../services/dynamic-form-field-control.service';
 
 @Component({
@@ -11,16 +11,17 @@ import { DynamicFormFieldControlService } from '../../services/dynamic-form-fiel
 })
 export class DynamicFormComponent implements OnInit {
 
-    @Input() dfFormFields: FormField[] = [];
-    dfForm: FormGroup;
+    @Input() dynamicForm: DynamicForm; 
+    dfFormGroup: FormGroup;
 
     constructor(private formFieldControlService: DynamicFormFieldControlService) {  }
 
     ngOnInit() {
-        this.dfForm = this.formFieldControlService.formFieldsToFormGroup(this.dfFormFields);
+        const sections = this.dynamicForm.getSections();
+        this.dfFormGroup = this.formFieldControlService.getFormGroups(sections);
     }
 
     onSubmit() {
-        console.log(this.dfForm.value);
+        console.log(this.dfFormGroup.value);
     }
 }
