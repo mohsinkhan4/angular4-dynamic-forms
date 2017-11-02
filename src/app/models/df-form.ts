@@ -17,5 +17,9 @@ export class DynamicForm {
     getSections() : DynamicFormSection[] {
         return this.sections;
     }
+
+    getSection(i) : DynamicFormSection {
+        return this.sections[i];
+    }
     
 }

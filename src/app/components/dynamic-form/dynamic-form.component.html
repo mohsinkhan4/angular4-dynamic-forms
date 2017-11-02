@@ -1,23 +1,33 @@
 <div class="row">
     <div class="col-xs-12">
+        <h3 class="text-left"> Form </h3>
         <form (ngSubmit)="onSubmit()" [formGroup]="dfFormGroup">
 
-            <!-- <ul class="nav nav-pills">
-                <li 
-                    *ngFor="let dynamicFormSection of dynamicForm.getSections()"
-                    role="presentation"
-                    class="active">
-                    <a href="#">{{ dynamicFormSection.key }}</a>
-                </li>
-            </ul> -->
             <div
-                *ngFor="let dynamicFormSection of dynamicForm.getSections()">
-                <app-dynamic-form-section 
-                    [dynamicFormSection]="dynamicFormSection" 
-                    [dfFormGroup]="dfFormGroup">
-                </app-dynamic-form-section>
+                [ngSwitch]="sectionDisplayType">
+
+                <div
+                    *ngSwitchCase="'TABBED'">
+                    <app-section-tabbed
+                        [dynamicForm]="dynamicForm"
+                        [dynamicFormSection]="dynamicFormSection" 
+                        [dfFormGroup]="dfFormGroup">
+                    </app-section-tabbed>
+                </div>
+
+                <div
+                    *ngSwitchCase="'LIST'">
+                    <app-section-list
+                        [dynamicForm]="dynamicForm"
+                        [dynamicFormSection]="dynamicFormSection" 
+                        [dfFormGroup]="dfFormGroup">
+                    </app-section-list>
+                </div>
+                
             </div>
+
             <hr>
+
             <button 
                 type="submit"
                 class="btn btn-info">
